@@ -4,6 +4,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Default ignored files
+/shelf/
+/workspace.xml
+
 ### STS ###
 .apt_generated
 .classpath
