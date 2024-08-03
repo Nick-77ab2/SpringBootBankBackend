@@ -12,10 +12,10 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String content;
-
+    @SuppressWarnings("unused")
     public Message() {
     }
-
+    @SuppressWarnings("unused")
     public Message(String content) {
         this.content = content;
     }
@@ -27,11 +27,11 @@ public class Message {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @SuppressWarnings("unused")
     public String getContent() {
         return content;
     }
-
+    @SuppressWarnings("unused")
     public void setContent(String content) {
         this.content = content;
     }
