@@ -3,14 +3,12 @@ package com.example.my_spring_boot_app.controller;
 import com.example.my_spring_boot_app.model.Message;
 import com.example.my_spring_boot_app.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000") // Adjust the origin as needed
 public class HelloController {
     @SuppressWarnings("unused")
     @Autowired
