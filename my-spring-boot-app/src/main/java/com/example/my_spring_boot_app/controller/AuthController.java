@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
+import com.example.my_spring_boot_app.security.CustomUserDetailsService;
 
 @RestController
 public class AuthController {
@@ -22,7 +23,7 @@ public class AuthController {
     private JwtUtil jwtUtil;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private CustomUserDetailsService userDetailsService;
 
     @PostMapping("/authentication")
     public ResponseEntity<String> authenticate(@RequestBody AuthRequest authRequest) throws Exception {
