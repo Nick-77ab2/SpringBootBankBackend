@@ -1,10 +1,8 @@
 package com.example.my_spring_boot_app.security;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.example.my_spring_boot_app.Account;
+import com.example.my_spring_boot_app.Savings;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,6 +18,8 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private String name;
+    @Embedded
+    private Account account;
 
     // Getters and setters
     public Long getId() {
@@ -52,6 +52,13 @@ public class User implements UserDetails {
 
     protected void setName(String name) {
         this.name = name;
+    }
+
+    protected void setAccount(float apr){
+        this.account = new Savings(this.getUsername(), apr);
+    }
+    protected Account getAccount(){
+        return this.account;
     }
 
     //UserDetails methods

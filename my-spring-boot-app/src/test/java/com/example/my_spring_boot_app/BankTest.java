@@ -27,14 +27,14 @@ public class BankTest {
         checking = new Checking(ID, APR);
         savings = new Savings(ID2, APR2);
         cd = new CD(ID3, APR3, 1001);
-        bank.addAccount(checking.getId(), checking);
-        bank.addAccount(savings.getId(), savings);
-        bank.addAccount(cd.getId(), cd);
+        bank.addAccount(checking.getAccid(), checking);
+        bank.addAccount(savings.getAccid(), savings);
+        bank.addAccount(cd.getAccid(), cd);
     }
 
     @Test
     void add_account_to_bank() {
-        assertEquals(ID, bank.getAccounts().get(ID).getId());
+        assertEquals(ID, bank.getAccounts().get(ID).getAccid());
         assertEquals(APR, bank.getAccounts().get(ID).getApr());
     }
 

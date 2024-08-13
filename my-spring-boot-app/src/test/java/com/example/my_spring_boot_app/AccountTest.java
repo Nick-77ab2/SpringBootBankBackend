@@ -28,19 +28,19 @@ public class AccountTest {
 
     @Test
     void checking_has_id_and_apr() {
-        assertEquals(ID, checking.getId());
+        assertEquals(ID, checking.getAccid());
         assertEquals(APR, checking.getApr());
     }
 
     @Test
     void savings_has_id_and_apr() {
-        assertEquals(ID2, savings.getId());
+        assertEquals(ID2, savings.getAccid());
         assertEquals(APR2, savings.getApr());
     }
 
     @Test
     void cd_has_id_and_apr_and_balance() {
-        assertEquals(ID3, cd.getId());
+        assertEquals(ID3, cd.getAccid());
         assertEquals(APR3, cd.getApr());
         assertEquals(new BigDecimal("1001.00"), cd.getBalance());
     }

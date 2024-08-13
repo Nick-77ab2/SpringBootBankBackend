@@ -19,7 +19,7 @@ public class SavingsTest {
 
     @Test
     void savings_has_id_and_apr_and_balance_is_zero() {
-        assertEquals(ID, saving.getId());
+        assertEquals(ID, saving.getAccid());
         assertEquals(APR, saving.getApr());
         assertEquals(new BigDecimal("0.00"), saving.getBalance());
     }

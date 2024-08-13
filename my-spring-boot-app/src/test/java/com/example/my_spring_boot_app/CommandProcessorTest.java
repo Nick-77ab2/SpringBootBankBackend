@@ -45,7 +45,7 @@ public class CommandProcessorTest {
         commandProcessor.calculateProcessor(INPUT1);
         assertEquals("checking", bank.getAccounts().get("12345678").getAccountType());
         assertEquals(1.0f, bank.getAccounts().get("12345678").getApr());
-        assertEquals("12345678", bank.getAccounts().get("12345678").getId());
+        assertEquals("12345678", bank.getAccounts().get("12345678").getAccid());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class CommandProcessorTest {
         commandProcessor.calculateProcessor(INPUT2);
         assertEquals("savings", bank.getAccounts().get("12345679").getAccountType());
         assertEquals(1.0f, bank.getAccounts().get("12345679").getApr());
-        assertEquals("12345679", bank.getAccounts().get("12345679").getId());
+        assertEquals("12345679", bank.getAccounts().get("12345679").getAccid());
     }
 
     @Test
@@ -61,7 +61,7 @@ public class CommandProcessorTest {
         commandProcessor.calculateProcessor(INPUT3);
         assertEquals("cd", bank.getAccounts().get("12345688").getAccountType());
         assertEquals(1.0f, bank.getAccounts().get("12345688").getApr());
-        assertEquals("12345688", bank.getAccounts().get("12345688").getId());
+        assertEquals("12345688", bank.getAccounts().get("12345688").getAccid());
         assertEquals(new BigDecimal("1000.00"), bank.getAccounts().get("12345688").getBalance());
     }
 

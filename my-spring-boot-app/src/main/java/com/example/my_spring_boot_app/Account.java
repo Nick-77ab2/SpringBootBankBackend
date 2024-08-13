@@ -1,21 +1,30 @@
 package com.example.my_spring_boot_app;
 
+import jakarta.persistence.Embeddable;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Account {
+//@Table(name = "user_account")
+@Embeddable
+public class Account implements Serializable {
     protected BigDecimal balance = BigDecimal.valueOf(0);
     protected String type;
-    private String id;
+    private String accid;
+
     private float apr;
 
-    protected Account(String id, float apr) {
-        this.id = id;
+    protected Account(){
+
+    }
+    protected Account(String accid, float apr) {
+        this.accid = accid;
         this.apr = apr;
     }
 
-    protected Account(String id, float apr, double deposit) {
-        this.id = id;
+    protected Account(String accid, float apr, double deposit) {
+        this.accid = accid;
         this.apr = apr;
         BigDecimal value = BigDecimal.valueOf(deposit);
         this.balance = balance.add(value);
@@ -25,8 +34,8 @@ public class Account {
         return type;
     }
 
-    public String getId() {
-        return id;
+    public String getAccid() {
+        return accid;
     }
 
     public float getApr() {

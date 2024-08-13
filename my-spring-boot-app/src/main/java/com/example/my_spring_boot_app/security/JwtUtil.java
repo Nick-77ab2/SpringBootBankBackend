@@ -1,5 +1,6 @@
 package com.example.my_spring_boot_app.security;
 
+import com.example.my_spring_boot_app.Account;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -14,9 +15,11 @@ import java.util.Date;
 public class JwtUtil {
     private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
-    public String generateToken(String username){
+    public String generateToken(String email, User user){
         return Jwts.builder()
-                .setSubject(username)
+                .claim("Username",user.getName())
+                .claim("Account:", user.getAccount())
+                .setSubject(email)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
                 .signWith(key)

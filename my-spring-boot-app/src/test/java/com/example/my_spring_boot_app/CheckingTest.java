@@ -19,7 +19,7 @@ public class CheckingTest {
 
     @Test
     void checking_has_id_and_apr_balance_is_zero() {
-        assertEquals(ID, checking.getId());
+        assertEquals(ID, checking.getAccid());
         assertEquals(APR, checking.getApr());
         assertEquals(new BigDecimal("0.00"), checking.getBalance());
     }

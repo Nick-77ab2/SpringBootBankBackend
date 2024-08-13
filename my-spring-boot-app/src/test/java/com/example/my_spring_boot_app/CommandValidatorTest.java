@@ -45,7 +45,7 @@ public class CommandValidatorTest {
     @Test
     void invalid_length_deposit_command() {
         Account savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         boolean actual = commandValidator.calculateValidator("deposit 12345678 100 aba");
         boolean actual1 = commandValidator.calculateValidator("deposit 12345678");
         boolean actual2 = commandValidator.calculateValidator("deposit");
@@ -57,7 +57,7 @@ public class CommandValidatorTest {
     @Test
     void invalid_length_pass_time_command() {
         Account savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         boolean actual = commandValidator.calculateValidator("pass 1 aba");
         boolean actual1 = commandValidator.calculateValidator("pass");
         assertFalse(actual);
@@ -67,7 +67,7 @@ public class CommandValidatorTest {
     @Test
     void invalid_duplicate_id_create_command() {
         Account savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         boolean actual = commandValidator.calculateValidator("Create savings 12345678 0.6");
         assertFalse(actual);
     }
@@ -157,7 +157,7 @@ public class CommandValidatorTest {
     @Test
     void check_deposit_case() {
         Account savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         boolean actual = commandValidator.calculateValidator("Deposit 12345678 500");
         boolean actual1 = commandValidator.calculateValidator("DePosit 12345678 500");
         assertTrue(actual);
@@ -167,7 +167,7 @@ public class CommandValidatorTest {
     @Test
     void check_deposit_ids() {
         Account savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         boolean actual = commandValidator.calculateValidator("Deposit 12345678 500");
         boolean actual1 = commandValidator.calculateValidator("Deposit 12345679 500");
         boolean actual2 = commandValidator.calculateValidator("Deposit 1234567 500");
@@ -179,11 +179,11 @@ public class CommandValidatorTest {
     @Test
     void check_deposit_id_type() {
         Account savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         Account checking = new Checking("12345679", 0.6f);
-        bank.addAccount(checking.getId(), checking);
+        bank.addAccount(checking.getAccid(), checking);
         Account cd = new CD("12345689", 0.6f, 1000);
-        bank.addAccount(cd.getId(), cd);
+        bank.addAccount(cd.getAccid(), cd);
         boolean actual = commandValidator.calculateValidator("Deposit 12345678 500");
         boolean actual1 = commandValidator.calculateValidator("Deposit 12345679 500");
         boolean actual2 = commandValidator.calculateValidator("Deposit 12345689 500");
@@ -195,9 +195,9 @@ public class CommandValidatorTest {
     @Test
     void check_deposit_large_sum() {
         Account savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         Account checking = new Checking("12345679", 0.6f);
-        bank.addAccount(checking.getId(), checking);
+        bank.addAccount(checking.getAccid(), checking);
         boolean actual = commandValidator.calculateValidator("Deposit 12345678 2499");
         boolean actual1 = commandValidator.calculateValidator("Deposit 12345678 2500");
         boolean actual2 = commandValidator.calculateValidator("Deposit 12345678 2501");
@@ -215,7 +215,7 @@ public class CommandValidatorTest {
     @Test
     void check_deposit_negatives_and_zero() {
         Account savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         boolean actual = commandValidator.calculateValidator("Deposit 12345678 -1");
         boolean actual1 = commandValidator.calculateValidator("Deposit 12345678 0");
         assertFalse(actual);
@@ -225,7 +225,7 @@ public class CommandValidatorTest {
     @Test
     void check_deposit_null() {
         Account savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         boolean actual = commandValidator.calculateValidator("Deposit 12345678");
         boolean actual1 = commandValidator.calculateValidator("Deposit 1234567");
         assertFalse(actual);
@@ -261,9 +261,9 @@ public class CommandValidatorTest {
         Account savings = new Savings("12345678", 0.6f);
         Account checking = new Checking("12345679", 0.6f);
         Account cd = new CD("12345688", 0.6f, 1000);
-        bank.addAccount(savings.getId(), savings);
-        bank.addAccount(checking.getId(), checking);
-        bank.addAccount(cd.getId(), cd);
+        bank.addAccount(savings.getAccid(), savings);
+        bank.addAccount(checking.getAccid(), checking);
+        bank.addAccount(cd.getAccid(), cd);
         boolean actual = commandValidator.calculateValidator("withdraw 12345678 1");
         boolean actual1 = commandValidator.calculateValidator("withdraw 12345679 1");
         boolean actual2 = commandValidator.calculateValidator("withdraw 12345688 1");
@@ -276,7 +276,7 @@ public class CommandValidatorTest {
     @Test
     void invalid_withdraw_command_invalid_withdraw() {
         Account savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         boolean actual = commandValidator.calculateValidator("withdraw 12345678 ooga");
         assertFalse(actual);
     }
@@ -284,7 +284,7 @@ public class CommandValidatorTest {
     @Test
     void invalid_withdraw_command_invalid_lengths() {
         Account savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         boolean actual = commandValidator.calculateValidator("withdraw 12345678 1 ooga");
         boolean actual1 = commandValidator.calculateValidator("withdraw 12345678");
         assertFalse(actual);
@@ -294,7 +294,7 @@ public class CommandValidatorTest {
     @Test
     void bounding_amounts_for_savings() {
         Account savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         boolean actual = commandValidator.calculateValidator("withdraw 12345678 -1");
         boolean actual1 = commandValidator.calculateValidator("withdraw 12345678 0");
         boolean actual2 = commandValidator.calculateValidator("withdraw 12345678 1");
@@ -314,7 +314,7 @@ public class CommandValidatorTest {
     @Test
     void bounding_amounts_for_checking() {
         Account checking = new Checking("12345678", 0.6f);
-        bank.addAccount(checking.getId(), checking);
+        bank.addAccount(checking.getAccid(), checking);
         boolean actual = commandValidator.calculateValidator("withdraw 12345678 -1");
         boolean actual1 = commandValidator.calculateValidator("withdraw 12345678 0");
         boolean actual2 = commandValidator.calculateValidator("withdraw 12345678 1");
@@ -332,7 +332,7 @@ public class CommandValidatorTest {
     @Test
     void two_withdraws_savings_fails() {
         Savings savings = new Savings("12345678", 0.6f);
-        bank.addAccount(savings.getId(), savings);
+        bank.addAccount(savings.getAccid(), savings);
         boolean actual = commandValidator.calculateValidator("withdraw 12345678 100");
         savings.setLastWithdrawMonth();
         boolean actual1 = commandValidator.calculateValidator("withdraw 12345678 1");
@@ -343,7 +343,7 @@ public class CommandValidatorTest {
     @Test
     void withdraw_from_cd_before_and_after_twelve_months() {
         CD cd = new CD("12345678", 0.6f, 1001);
-        bank.addAccount(cd.getId(), cd);
+        bank.addAccount(cd.getAccid(), cd);
         boolean actual = commandValidator.calculateValidator("withdraw 12345678 1001");
         commandProcessor.calculateProcessor("pass 12");
         boolean actual1 = commandValidator.calculateValidator("withdraw 12345678 1030");

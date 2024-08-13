@@ -20,7 +20,7 @@ public class CDTest {
 
     @Test
     void cd_has_id_and_apr_and_balance() {
-        assertEquals(ID, cd.getId());
+        assertEquals(ID, cd.getAccid());
         assertEquals(APR, cd.getApr());
         assertEquals(new BigDecimal("1001.00"), cd.getBalance());
     }
