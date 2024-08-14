@@ -42,20 +42,17 @@ public class Account implements Serializable {
         return apr;
     }
 
-    public void addBalance(String value) {
+    public void addBalance(double value) {
         BigDecimal add = new BigDecimal(value);
         balance = balance.add(add);
     }
+    public void setBalance(BigDecimal balance){
+        this.balance = balance;
+    }
 
-    public void removeBalance(String value) {
+    public void removeBalance(double value) {
         BigDecimal remove = new BigDecimal(value);
-        if (getBalance().compareTo(BigDecimal.ZERO) == 0) {
-            balance = getBalance();
-        } else if ((getBalance().subtract(remove)).compareTo(BigDecimal.ZERO) > 0) {
-            balance = balance.subtract(remove);
-        } else if ((getBalance().subtract(remove)).compareTo(BigDecimal.ZERO) <= 0) {
-            balance = balance.subtract(balance);
-        }
+        balance = balance.subtract(remove);
     }
 
     public BigDecimal getBalance() {

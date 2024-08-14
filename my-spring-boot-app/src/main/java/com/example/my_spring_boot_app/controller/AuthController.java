@@ -1,9 +1,8 @@
 package com.example.my_spring_boot_app.controller;
 
-import com.example.my_spring_boot_app.repository.UserRepository;
 import com.example.my_spring_boot_app.security.AuthRequest;
 import com.example.my_spring_boot_app.security.JwtUtil;
-import com.example.my_spring_boot_app.security.User;
+import com.example.my_spring_boot_app.services.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +10,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
-import com.example.my_spring_boot_app.security.CustomUserDetailsService;
+import com.example.my_spring_boot_app.services.CustomUserDetailsService;
 
 @RestController
 public class AuthController {

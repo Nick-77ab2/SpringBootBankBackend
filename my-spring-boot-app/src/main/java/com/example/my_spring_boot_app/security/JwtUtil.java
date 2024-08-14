@@ -1,7 +1,6 @@
 package com.example.my_spring_boot_app.security;
 
-import com.example.my_spring_boot_app.Account;
-import io.jsonwebtoken.Claims;
+import com.example.my_spring_boot_app.services.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;

@@ -1,4 +1,4 @@
-package com.example.my_spring_boot_app.security;
+package com.example.my_spring_boot_app.services;
 
 import com.example.my_spring_boot_app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

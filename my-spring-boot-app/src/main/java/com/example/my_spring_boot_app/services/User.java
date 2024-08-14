@@ -1,4 +1,4 @@
-package com.example.my_spring_boot_app.security;
+package com.example.my_spring_boot_app.services;
 
 import com.example.my_spring_boot_app.Account;
 import com.example.my_spring_boot_app.Savings;
@@ -57,7 +57,7 @@ public class User implements UserDetails {
     protected void setAccount(float apr){
         this.account = new Savings(this.getUsername(), apr);
     }
-    protected Account getAccount(){
+    public Account getAccount(){
         return this.account;
     }
 

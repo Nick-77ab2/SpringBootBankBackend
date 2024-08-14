@@ -1,5 +1,6 @@
 package com.example.my_spring_boot_app.security;
 
+import com.example.my_spring_boot_app.services.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

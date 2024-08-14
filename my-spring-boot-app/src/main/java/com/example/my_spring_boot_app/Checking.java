@@ -8,10 +8,4 @@ public class Checking extends Account {
         super(id, apr);
         type = "checking";
     }
-
-    @Override
-    public void addBalance(String value) {
-        BigDecimal add = new BigDecimal(value);
-        balance = balance.add(add);
-    }
 }

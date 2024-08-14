@@ -21,11 +21,11 @@ public class Bank {
         return accounts;
     }
 
-    public void deposit(String id, String amount) {
+    public void deposit(String id, double amount) {
         accounts.get(id).addBalance(amount);
     }
 
-    public void withdraw(String id, String removeAmount) {
+    public void withdraw(String id, double removeAmount) {
         accounts.get(id).removeBalance(removeAmount);
     }
 
@@ -45,7 +45,7 @@ public class Bank {
 
     private void runMonthChecklist(Iterator<Map.Entry<String, Account>> it, Map.Entry<String, Account> account) {
         if (account.getValue().getBalance().compareTo(BigDecimal.valueOf(100)) <= 0) {
-            account.getValue().removeBalance("25");
+            account.getValue().removeBalance(25);
         }
         if (account.getValue().getBalance().compareTo(BigDecimal.ZERO) <= 0) {
             it.remove();

@@ -1,10 +1,9 @@
 package com.example.my_spring_boot_app.controller;
 
-import com.example.my_spring_boot_app.security.CustomUserDetailsService;
-import com.example.my_spring_boot_app.security.User;
-import com.example.my_spring_boot_app.security.UserService;
+import com.example.my_spring_boot_app.services.CustomUserDetailsService;
+import com.example.my_spring_boot_app.services.User;
+import com.example.my_spring_boot_app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;

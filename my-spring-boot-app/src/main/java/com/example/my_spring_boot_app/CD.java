@@ -11,7 +11,7 @@ public class CD extends Account {
     }
 
     @Override
-    public void addBalance(String value) {
+    public void addBalance(double value) {
     }
 
     public int getCreationMonth() {
