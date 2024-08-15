@@ -32,7 +32,7 @@ public class SecurityConfiguration {
         //System.out.println("HOLY SHIT DOES THIS WORK OR DOES IT NOTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/authentication", "/register").permitAll()
+                        .requestMatchers("/authentication", "/register", "/api/bank/balance/{username}", "/api/bank/addbalance/{username}", "/api/bank/removebalance/{username}").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

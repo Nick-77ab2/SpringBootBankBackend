@@ -54,7 +54,13 @@ public class BankingService {
         if (user == null){
             throw new IllegalArgumentException("Invalid username");
         }
-        return user.getAccount().getBalance();
+        System.out.println("Fetched user: " + user);
+        Account account = user.getAccount();
+        if(account == null) {
+            throw new IllegalArgumentException("Account not found");
+        }
+        System.out.println("Fetched account: " + account); // Log the account
+        return account.getBalance();
     }
 
     public void addBalance(String username, double amount){
@@ -62,7 +68,14 @@ public class BankingService {
         if (user == null){
             throw new IllegalArgumentException("Invalid username");
         }
-        user.getAccount().addBalance(amount);
+        System.out.println("Fetched user: " + user);
+        Account account = user.getAccount();
+        if(account == null) {
+            throw new IllegalArgumentException("Account not found");
+        }
+        System.out.println("Fetched account: " + account); // Log the account
+        account.addBalance(amount);
+        userRepository.save(user);
     }
 
     public void removeBalance(String username, double amount){
@@ -70,6 +83,13 @@ public class BankingService {
         if (user == null){
             throw new IllegalArgumentException("Invalid username");
         }
-        user.getAccount().removeBalance(amount);
+        System.out.println("Fetched user: " + user);
+        Account account = user.getAccount();
+        if(account == null) {
+            throw new IllegalArgumentException("Account not found");
+        }
+        System.out.println("Fetched account: " + account); // Log the account
+        account.removeBalance(amount);
+        userRepository.save(user);
     }
 }

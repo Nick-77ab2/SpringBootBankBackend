@@ -1,5 +1,6 @@
 package com.example.my_spring_boot_app.controller;
 
+import com.example.my_spring_boot_app.model.BalanceRequest;
 import com.example.my_spring_boot_app.services.BankingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +16,9 @@ public class BankController {
     private BankingService bankingService;
 
     @PostMapping("/transfer")
-    public ResponseEntity<String> transfer(@RequestParam Long fromUserId, @RequestParam Long toUserId, @RequestParam double amount){
+    public ResponseEntity<String> transfer(@RequestParam Long fromUserId, @RequestParam Long toUserId, @RequestBody BalanceRequest balanceRequest){
         try {
+            double amount = balanceRequest.getAmount();
             bankingService.processTransaction(fromUserId, toUserId, amount);
             return ResponseEntity.ok("Transfer successful");
         } catch(IllegalArgumentException e){
@@ -35,8 +37,11 @@ public class BankController {
     }
 
     @PostMapping("/addbalance/{username}")
-    public ResponseEntity<BigDecimal> addBalance(@PathVariable String username, @PathVariable double amount) {
+    public ResponseEntity<BigDecimal> addBalance(@PathVariable String username, @RequestBody BalanceRequest balanceRequest) {
         try {
+            System.out.println("Received request body: " + balanceRequest);
+            double amount = balanceRequest.getAmount();
+            System.out.println("Amount to add: " + amount); // Log the amount
             bankingService.addBalance(username, amount);
             BigDecimal balance = bankingService.getBalance(username);
             return ResponseEntity.ok(balance);
@@ -46,8 +51,10 @@ public class BankController {
     }
 
     @PostMapping("/removebalance/{username}")
-    public ResponseEntity<BigDecimal> removeBalance(@PathVariable String username, @PathVariable double amount) {
+    public ResponseEntity<BigDecimal> removeBalance(@PathVariable String username, @RequestBody BalanceRequest balanceRequest) {
         try {
+            System.out.println("Received request body: " + balanceRequest);
+            double amount = balanceRequest.getAmount();
             bankingService.removeBalance(username, amount);
             BigDecimal balance = bankingService.getBalance(username);
             return ResponseEntity.ok(balance);
