@@ -16,12 +16,15 @@ public class BankingService {
     private UserRepository userRepository;
 
     @Transactional
-    public void processTransaction(Long fromUserId, Long toUserId, double amount){
-        User fromUser = userRepository.findById(fromUserId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
-        User toUser = userRepository.findById(toUserId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
-
+    public void processTransaction(String fromUserId, String toUserId, double amount){
+        User fromUser = userRepository.findByUsername(fromUserId);
+        if (fromUser == null){
+            throw new IllegalArgumentException("Invalid username");
+        }
+        User toUser = userRepository.findByUsername(toUserId);
+        if (toUser == null){
+            throw new IllegalArgumentException("Invalid username");
+        }
         Account fromAccount = fromUser.getAccount();
         Account toAccount = toUser.getAccount();
         BigDecimal amt = new BigDecimal(amount);
@@ -87,6 +90,10 @@ public class BankingService {
         Account account = user.getAccount();
         if(account == null) {
             throw new IllegalArgumentException("Account not found");
+        }
+        BigDecimal amt = new BigDecimal(amount);
+        if (account.getBalance().subtract(amt).compareTo(BigDecimal.ZERO) < 0){
+            throw new IllegalArgumentException("Insufficient funds");
         }
         System.out.println("Fetched account: " + account); // Log the account
         account.removeBalance(amount);

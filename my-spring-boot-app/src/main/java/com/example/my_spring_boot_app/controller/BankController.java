@@ -16,13 +16,16 @@ public class BankController {
     private BankingService bankingService;
 
     @PostMapping("/transfer")
-    public ResponseEntity<String> transfer(@RequestParam Long fromUserId, @RequestParam Long toUserId, @RequestBody BalanceRequest balanceRequest){
+    public ResponseEntity<BigDecimal> transfer(@RequestBody BalanceRequest balanceRequest){
         try {
             double amount = balanceRequest.getAmount();
+            String fromUserId=balanceRequest.getFromUser();
+            String toUserId = balanceRequest.getToUser();
             bankingService.processTransaction(fromUserId, toUserId, amount);
-            return ResponseEntity.ok("Transfer successful");
+            BigDecimal balance = bankingService.getBalance(fromUserId);
+            return ResponseEntity.ok(balance);
         } catch(IllegalArgumentException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
