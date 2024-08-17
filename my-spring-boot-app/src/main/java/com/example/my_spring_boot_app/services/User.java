@@ -3,9 +3,11 @@ package com.example.my_spring_boot_app.services;
 import com.example.my_spring_boot_app.Account;
 import com.example.my_spring_boot_app.Savings;
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -18,6 +20,8 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private String name;
+    private String verificationToken;
+    private LocalDateTime tokenExpiration;
     @Embedded
     private Account account;
 
@@ -54,6 +58,10 @@ public class User implements UserDetails {
         this.name = name;
     }
 
+    public boolean isTokenExpired(){
+        return LocalDateTime.now().isAfter(tokenExpiration);
+    }
+
     protected void setAccount(float apr){
         this.account = new Savings(this.getUsername(), apr);
     }
@@ -87,5 +95,20 @@ public class User implements UserDetails {
         return true;
     }
 
+    public String getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(String verificationToken){
+        this.verificationToken=verificationToken;
+    }
+
+    public LocalDateTime getTokenExpiration(){
+        return tokenExpiration;
+    }
+
+    public void setTokenExpiration(LocalDateTime tokenExpiration){
+        this.tokenExpiration=tokenExpiration;
+    }
 }
 
