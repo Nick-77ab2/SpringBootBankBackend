@@ -38,7 +38,7 @@ public class User implements UserDetails {
         return username;
     }
 
-    protected void setUsername() {
+    public void setUsername() {
         this.username = username;
     }
 
@@ -46,7 +46,7 @@ public class User implements UserDetails {
         return password;
     }
 
-    protected void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -54,7 +54,7 @@ public class User implements UserDetails {
         return name;
     }
 
-    protected void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 

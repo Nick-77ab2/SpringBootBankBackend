@@ -18,4 +18,13 @@ public class EmailService {
         message.setText("Click the link to verify your account " + "http://localhost:3000/verify?token=" + user.getVerificationToken());
         mailSender.send(message);
     }
+
+    public void sendResetEmail(User user){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("nickstestbank@gmail.com");
+        message.setTo(user.getUsername());
+        message.setSubject("Password Reset");
+        message.setText("Click the link to reset your password " + "http://localhost:3000/resetPassword?token=" + user.getVerificationToken());
+        mailSender.send(message);
+    }
 }
