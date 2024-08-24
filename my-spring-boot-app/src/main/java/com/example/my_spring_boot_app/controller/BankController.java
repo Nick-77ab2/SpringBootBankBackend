@@ -58,6 +58,7 @@ public class BankController {
         try {
             System.out.println("Received request body: " + balanceRequest);
             double amount = balanceRequest.getAmount();
+            System.out.println("Got the amount to remove: " + amount);
             bankingService.removeBalance(username, amount);
             BigDecimal balance = bankingService.getBalance(username);
             return ResponseEntity.ok(balance);

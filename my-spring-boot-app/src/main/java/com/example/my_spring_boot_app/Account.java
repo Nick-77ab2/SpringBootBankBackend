@@ -43,16 +43,20 @@ public class Account implements Serializable {
     }
 
     public void addBalance(double value) {
-        BigDecimal add = new BigDecimal(value);
+        BigDecimal add = BigDecimal.valueOf(value);
+        System.out.println("THE PREVIOUS BALANCE IS: " + balance + " AND THE AMOUNT TO ADD IS: " + add + "THE ORIGINAL AMOUNT TO ADD IS: " + value);
         balance = balance.add(add);
+        System.out.println("THE NEW BALANCE IS: " + balance);
     }
     public void setBalance(BigDecimal balance){
         this.balance = balance;
     }
 
     public void removeBalance(double value) {
-        BigDecimal remove = new BigDecimal(value);
+        BigDecimal remove = BigDecimal.valueOf(value);
+        System.out.println("THE PREVIOUS BALANCE IS: " + balance + " AND THE AMOUNT TO ADD IS: " + remove);
         balance = balance.subtract(remove);
+        System.out.println("THE NEW BALANCE IS: " + balance);
     }
 
     public BigDecimal getBalance() {

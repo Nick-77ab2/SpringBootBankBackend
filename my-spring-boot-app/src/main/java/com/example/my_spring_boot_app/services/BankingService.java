@@ -27,7 +27,7 @@ public class BankingService {
         }
         Account fromAccount = fromUser.getAccount();
         Account toAccount = toUser.getAccount();
-        BigDecimal amt = new BigDecimal(amount);
+        BigDecimal amt = BigDecimal.valueOf(amount);
         if (fromAccount.getBalance().subtract(amt).compareTo(BigDecimal.ZERO) < 0){
             throw new IllegalArgumentException("Insufficient funds");
         }
@@ -91,8 +91,9 @@ public class BankingService {
         if(account == null) {
             throw new IllegalArgumentException("Account not found");
         }
-        BigDecimal amt = new BigDecimal(amount);
+        BigDecimal amt = BigDecimal.valueOf(amount);
         if (account.getBalance().subtract(amt).compareTo(BigDecimal.ZERO) < 0){
+            System.out.println("INSUFFICIENT FUNDS");
             throw new IllegalArgumentException("Insufficient funds");
         }
         System.out.println("Fetched account: " + account); // Log the account
